@@ -1,344 +1,326 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.2">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics & Rhetoric | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --deep-purple: #bd00ff;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #050505;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Glassmorphism Classes */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+        
+        /* Interactive Background Canvas */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-blue);
+        }
+
+        /* Glitch Effect on Hover for Name */
+        .glitch-hover:hover {
+            text-shadow: 2px 0 var(--deep-purple), -2px 0 var(--neon-blue);
+        }
+    </style>
 </head>
-<body>
-<p class="p1"><span class="s1">&lt;code&gt;</span></p>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Physics &amp; Rhetoric | Portfolio&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>:root {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--neon-blue: #00f3ff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--deep-purple: #bd00ff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Space Grotesk', sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: #050505;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #e0e0e0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overflow-x: hidden;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.mono {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'JetBrains Mono', monospace;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Glassmorphism Classes */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.glass {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.03);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(10px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(255, 255, 255, 0.1);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.glass:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-color: var(--neon-blue);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Interactive Background Canvas */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>#canvas-container {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>top: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>left: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>z-index: -1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Custom Scrollbar */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-track {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #050505;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-thumb {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #333;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 4px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>::-webkit-scrollbar-thumb:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--neon-blue);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* Glitch Effect on Hover for Name */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.glitch-hover:hover {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-shadow: 2px 0 var(--deep-purple), -2px 0 var(--neon-blue);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body class="antialiased"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="canvas-container"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;canvas id="neuro"&gt;&lt;/canvas&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;nav class="fixed w-full z-50 glass border-b-0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex items-center justify-between h-16"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex-shrink-0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span class="mono text-xl font-bold text-white tracking-tighter"&gt;&amp;lt;IISERB/&amp;gt;&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="hidden md:block"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="ml-10 flex items-baseline space-x-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;a href="#about" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"&gt;About&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;a href="#projects" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"&gt;Projects&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;a href="#debate" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"&gt;Debate Record&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;a href="#contact" class="bg-white text-black hover:bg-cyan-400 transition-colors px-4 py-2 rounded-full text-sm font-bold"&gt;Contact&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section class="min-h-screen flex items-center justify-center relative px-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="text-center max-w-4xl mx-auto"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p class="mono text-cyan-400 mb-4 tracking-widest uppercase text-sm"&gt;Physics // Rhetoric&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-6xl md:text-8xl font-bold mb-6 text-white glitch-hover transition-all duration-300 cursor-default"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>Analyzing Matter.&lt;br&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>Constructing Arguments.</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>I am a Physics Student at &lt;span class="text-white font-bold"&gt;IISER Bhopal&lt;/span&gt; and a competitive Parliamentary Debater. I bridge the gap between empirical data and persuasive narrative.</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-center gap-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;a href="#projects" class="glass px-8 py-3 rounded-full font-bold hover:bg-white hover:text-black transition-all"&gt;View Research&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;a href="#debate" class="px-8 py-3 rounded-full font-bold border border-gray-600 hover:border-cyan-400 hover:text-cyan-400 transition-all"&gt;Debate CV&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section id="projects" class="py-20 px-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold mb-12 border-l-4 border-cyan-400 pl-4"&gt;Selected Projects&lt;/h2&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="glass p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex justify-between items-start mb-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="mono text-xs text-cyan-400 border border-cyan-400 px-2 py-1 rounded"&gt;COMPUTATIONAL PHYSICS&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"&gt;&lt;/path&gt;&lt;/svg&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-2"&gt;Simulating Quantum Wells&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 text-sm mb-6"&gt;A Python-based visualization of particle behavior in infinite potential wells using Schrödinger's equation.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="text-white border-b border-cyan-400 pb-1 hover:text-cyan-400"&gt;View on GitHub &amp;rarr;&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="glass p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex justify-between items-start mb-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="mono text-xs text-purple-400 border border-purple-400 px-2 py-1 rounded"&gt;DATA ANALYSIS&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"&gt;&lt;/path&gt;&lt;/svg&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-2"&gt;Astrophysics Data Pipeline&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 text-sm mb-6"&gt;Processing large datasets from radio telescopes to identify pulsar candidates using Machine Learning.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="text-white border-b border-purple-400 pb-1 hover:text-purple-400"&gt;View Analysis &amp;rarr;&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="glass p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex justify-between items-start mb-4"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="mono text-xs text-pink-400 border border-pink-400 px-2 py-1 rounded"&gt;DEBATE TECH&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"&gt;&lt;/path&gt;&lt;/svg&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-2"&gt;Motion Bank Database&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 text-sm mb-6"&gt;An interactive web archive of parliamentary debate motions categorized by theme and balance.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="text-white border-b border-pink-400 pb-1 hover:text-pink-400"&gt;Visit Site &amp;rarr;&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section id="debate" class="py-20 px-4 bg-black bg-opacity-50"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold mb-12 border-l-4 border-purple-400 pl-4"&gt;The Speaker's Record&lt;/h2&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="relative border-l border-gray-700 ml-3 space-y-12"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="relative pl-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span class="absolute -left-1.5 top-1.5 w-3 h-3 bg-cyan-400 rounded-full"&gt;&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-white"&gt;Best Speaker&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="mono text-sm text-cyan-400"&gt;IISER Inter-Collegiate Debate Championship 2024&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 mt-2"&gt;Ranked 1st out of 80 speakers. Successfully argued motions on Bioethics and Geopolitics.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="relative pl-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span class="absolute -left-1.5 top-1.5 w-3 h-3 bg-purple-400 rounded-full"&gt;&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-white"&gt;Finalist (Adjudicator)&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="mono text-sm text-purple-400"&gt;National University Debate Open&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 mt-2"&gt;Served as a core adjudicator for the grand finals. Analyzed complex arguments on economic policy.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                 </span>&lt;div class="relative pl-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span class="absolute -left-1.5 top-1.5 w-3 h-3 bg-pink-400 rounded-full"&gt;&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold text-white"&gt;President, Debate Club&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="mono text-sm text-pink-400"&gt;IISER Bhopal&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 mt-2"&gt;Organized weekly sparring sessions and hosted the annual institutional tournament.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;footer id="contact" class="py-12 border-t border-gray-800 text-center"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h2 class="text-3xl font-bold mb-6"&gt;Let's Discuss.&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="flex justify-center space-x-6 mb-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="#" class="text-gray-400 hover:text-white transition-colors"&gt;LinkedIn&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="#" class="text-gray-400 hover:text-white transition-colors"&gt;GitHub&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="#" class="text-gray-400 hover:text-white transition-colors"&gt;Email&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p class="mono text-xs text-gray-600"&gt;© 2025 | Built with Physics &amp; Code.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const canvas = document.getElementById("neuro");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const ctx = canvas.getContext("2d");</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Resize canvas to fit screen</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>canvas.width = window.innerWidth;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>canvas.height = window.innerHeight;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let particlesArray;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Mouse interaction</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let mouse = {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>x: null,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>y: null,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>radius: (canvas.height/80) * (canvas.width/80)</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.addEventListener('mousemove',<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function(event) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>mouse.x = event.x;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>mouse.y = event.y;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Particle Class</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>class Particle {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>constructor(x, y, directionX, directionY, size, color) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.x = x;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.y = y;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.directionX = directionX;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.directionY = directionY;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.size = size;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.color = color;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Method to draw</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>draw() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>ctx.beginPath();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>ctx.fillStyle = '#ffffff';</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>ctx.fill();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Check particle position, mouse position, move the particle, draw the particle</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>update() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (this.x &gt; canvas.width || this.x &lt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>this.directionX = -this.directionX;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (this.y &gt; canvas.height || this.y &lt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>this.directionY = -this.directionY;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Check collision detection - mouse position / particle position</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let dx = mouse.x - this.x;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let dy = mouse.y - this.y;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let distance = Math.sqrt(dx*dx + dy*dy);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (distance &lt; mouse.radius + this.size){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (mouse.x &lt; this.x &amp;&amp; this.x &lt; canvas.width - this.size * 10) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>this.x += 10;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (mouse.x &gt; this.x &amp;&amp; this.x &gt; this.size * 10) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>this.x -= 10;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (mouse.y &lt; this.y &amp;&amp; this.y &lt; canvas.height - this.size * 10) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>this.y += 10;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (mouse.y &gt; this.y &amp;&amp; this.y &gt; this.size * 10) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>this.y -= 10;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Move particle</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.x += this.directionX;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.y += this.directionY;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.draw();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Create particle array</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function init() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>particlesArray = [];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let numberOfParticles = (canvas.height * canvas.width) / 9000;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; numberOfParticles; i++) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let size = (Math.random() * 2) + 1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let directionX = (Math.random() * 2) - 1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let directionY = (Math.random() * 2) - 1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let color = '#ffffff'; // Particle color</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>particlesArray.push(new Particle(x, y, directionX, directionY, size, color));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Animation Loop</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function animate() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>requestAnimationFrame(animate);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>ctx.clearRect(0,0,innerWidth, innerHeight);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; particlesArray.length; i++) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>particlesArray[i].update();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>connect();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Draw lines between particles (The "Constellation" effect)</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function connect() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let opacityValue = 1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>for (let a = 0; a &lt; particlesArray.length; a++) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>for (let b = a; b &lt; particlesArray.length; b++) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>+ ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (distance &lt; (canvas.width/7) * (canvas.height/7)) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>opacityValue = 1 - (distance/20000);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>ctx.strokeStyle = 'rgba(0, 243, 255,' + opacityValue + ')'; // Cyan lines</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>ctx.lineWidth = 1;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>ctx.beginPath();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>ctx.moveTo(particlesArray[a].x, particlesArray[a].y);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>ctx.lineTo(particlesArray[b].x, particlesArray[b].y);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>ctx.stroke();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.addEventListener('resize',<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function(){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvas.width = innerWidth;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvas.height = innerHeight;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>mouse.radius = ((canvas.height/80) * (canvas.height/80));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>init();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Remove mouse position on mouse out</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.addEventListener('mouseout',</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function(){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>mouse.x = undefined;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>mouse.y = undefined;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>)</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>init();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>animate();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+<body class="antialiased">
+
+    <div id="canvas-container">
+        <canvas id="neuro"></canvas>
+    </div>
+
+    <nav class="fixed w-full z-50 glass border-b-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="mono text-xl font-bold text-white tracking-tighter">&lt;IISERB/&gt;</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="#projects" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
+                        <a href="#debate" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Debate Record</a>
+                        <a href="#contact" class="bg-white text-black hover:bg-cyan-400 transition-colors px-4 py-2 rounded-full text-sm font-bold">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center justify-center relative px-4">
+        <div class="text-center max-w-4xl mx-auto">
+            <p class="mono text-cyan-400 mb-4 tracking-widest uppercase text-sm">Physics // Rhetoric</p>
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 text-white glitch-hover transition-all duration-300 cursor-default">
+                Analyzing Matter.<br>
+                Constructing Arguments.
+            </h1>
+            <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                I am a Physics Student at <span class="text-white font-bold">IISER Bhopal</span> and a competitive Parliamentary Debater. I bridge the gap between empirical data and persuasive narrative.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#projects" class="glass px-8 py-3 rounded-full font-bold hover:bg-white hover:text-black transition-all">View Research</a>
+                <a href="#debate" class="px-8 py-3 rounded-full font-bold border border-gray-600 hover:border-cyan-400 hover:text-cyan-400 transition-all">Debate CV</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 border-l-4 border-cyan-400 pl-4">Selected Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="mono text-xs text-cyan-400 border border-cyan-400 px-2 py-1 rounded">COMPUTATIONAL PHYSICS</span>
+                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Simulating Quantum Wells</h3>
+                    <p class="text-gray-400 text-sm mb-6">A Python-based visualization of particle behavior in infinite potential wells using Schrödinger's equation.</p>
+                    <a href="#" class="text-white border-b border-cyan-400 pb-1 hover:text-cyan-400">View on GitHub &rarr;</a>
+                </div>
+
+                <div class="glass p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="mono text-xs text-purple-400 border border-purple-400 px-2 py-1 rounded">DATA ANALYSIS</span>
+                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Astrophysics Data Pipeline</h3>
+                    <p class="text-gray-400 text-sm mb-6">Processing large datasets from radio telescopes to identify pulsar candidates using Machine Learning.</p>
+                    <a href="#" class="text-white border-b border-purple-400 pb-1 hover:text-purple-400">View Analysis &rarr;</a>
+                </div>
+
+                <div class="glass p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="mono text-xs text-pink-400 border border-pink-400 px-2 py-1 rounded">DEBATE TECH</span>
+                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Motion Bank Database</h3>
+                    <p class="text-gray-400 text-sm mb-6">An interactive web archive of parliamentary debate motions categorized by theme and balance.</p>
+                    <a href="#" class="text-white border-b border-pink-400 pb-1 hover:text-pink-400">Visit Site &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="debate" class="py-20 px-4 bg-black bg-opacity-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 border-l-4 border-purple-400 pl-4">The Speaker's Record</h2>
+            
+            <div class="relative border-l border-gray-700 ml-3 space-y-12">
+                <div class="relative pl-8">
+                    <span class="absolute -left-1.5 top-1.5 w-3 h-3 bg-cyan-400 rounded-full"></span>
+                    <h3 class="text-xl font-bold text-white">Best Speaker</h3>
+                    <p class="mono text-sm text-cyan-400">IISER Inter-Collegiate Debate Championship 2024</p>
+                    <p class="text-gray-400 mt-2">Ranked 1st out of 80 speakers. Successfully argued motions on Bioethics and Geopolitics.</p>
+                </div>
+                <div class="relative pl-8">
+                    <span class="absolute -left-1.5 top-1.5 w-3 h-3 bg-purple-400 rounded-full"></span>
+                    <h3 class="text-xl font-bold text-white">Finalist (Adjudicator)</h3>
+                    <p class="mono text-sm text-purple-400">National University Debate Open</p>
+                    <p class="text-gray-400 mt-2">Served as a core adjudicator for the grand finals. Analyzed complex arguments on economic policy.</p>
+                </div>
+                 <div class="relative pl-8">
+                    <span class="absolute -left-1.5 top-1.5 w-3 h-3 bg-pink-400 rounded-full"></span>
+                    <h3 class="text-xl font-bold text-white">President, Debate Club</h3>
+                    <p class="mono text-sm text-pink-400">IISER Bhopal</p>
+                    <p class="text-gray-400 mt-2">Organized weekly sparring sessions and hosted the annual institutional tournament.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-12 border-t border-gray-800 text-center">
+        <h2 class="text-3xl font-bold mb-6">Let's Discuss.</h2>
+        <div class="flex justify-center space-x-6 mb-8">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">Email</a>
+        </div>
+        <p class="mono text-xs text-gray-600">© 2025 | Built with Physics & Code.</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById("neuro");
+        const ctx = canvas.getContext("2d");
+        
+        // Resize canvas to fit screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        // Mouse interaction
+        let mouse = {
+            x: null,
+            y: null,
+            radius: (canvas.height/80) * (canvas.width/80)
+        }
+
+        window.addEventListener('mousemove', 
+            function(event) {
+                mouse.x = event.x;
+                mouse.y = event.y;
+            }
+        );
+
+        // Particle Class
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            // Method to draw
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = '#ffffff';
+                ctx.fill();
+            }
+            // Check particle position, mouse position, move the particle, draw the particle
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+
+                // Check collision detection - mouse position / particle position
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+                if (distance < mouse.radius + this.size){
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                        this.x += 10;
+                    }
+                    if (mouse.x > this.x && this.x > this.size * 10) {
+                        this.x -= 10;
+                    }
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                        this.y += 10;
+                    }
+                    if (mouse.y > this.y && this.y > this.size * 10) {
+                        this.y -= 10;
+                    }
+                }
+                // Move particle
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        // Create particle array
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 2) - 1;
+                let directionY = (Math.random() * 2) - 1;
+                let color = '#ffffff'; // Particle color
+
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0,0,innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        // Draw lines between particles (The "Constellation" effect)
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                    + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        opacityValue = 1 - (distance/20000);
+                        ctx.strokeStyle = 'rgba(0, 243, 255,' + opacityValue + ')'; // Cyan lines
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('resize', 
+            function(){
+                canvas.width = innerWidth;
+                canvas.height = innerHeight;
+                mouse.radius = ((canvas.height/80) * (canvas.height/80));
+                init();
+            }
+        );
+
+        // Remove mouse position on mouse out
+        window.addEventListener('mouseout',
+            function(){
+                mouse.x = undefined;
+                mouse.y = undefined;
+            }
+        )
+
+        init();
+        animate();
+    </script>
 </body>
 </html>
